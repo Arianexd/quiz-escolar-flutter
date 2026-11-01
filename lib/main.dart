@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'core/theme/app_theme.dart';
+import 'data/app_store.dart';
+import 'features/home/home_screen.dart';
 
-void main() {
-  runApp(const MainApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await AppStore.instance.initialize();
+
+  runApp(const CuestApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class CuestApp extends StatelessWidget {
+  const CuestApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      title: 'CuestApp',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      home: const HomeScreen(),
     );
   }
 }
